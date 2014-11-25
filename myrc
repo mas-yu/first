@@ -1,0 +1,37 @@
+#
+# 自分設定
+#
+
+myTemplatesDir="${HOME}/.myTemplates"
+myUtilsDir="${HOME}/.myUtils"
+
+# テンプレートディレクトリの有無を確認
+if [ -e  ${myTemplatesDir} ]; then
+    echo MyTemplates is exist.
+    export myTemplatesDir=${myTemplatesDir}
+else
+    echo MyTemplates is not exist.
+    unset ${myTemplatesDir}
+fi
+
+# ユーティリティディレクトリの有無を確認
+if [ -e  ${myUtilsDir} ]; then
+    echo MyUtils is exist.
+    export myUtilsDir=${myUtilsDir}
+    alias utls='ls ${myUtilsDir}'
+    alias utls='for sh in `ls -1 ${myUtilsDir}/*.sh`; do echo `basename -s .sh ${sh}`; done'
+    alias xxxx="echo xxxx"
+
+    for sh in `ls -1 ${myUtilsDir}/*.sh`
+    do
+      echo `basename -s .sh ${sh}`;
+      alias `basename -s .sh ${sh}`=${sh}
+    done
+else
+    echo MyUtils is not exist.
+    unset ${myUtilsDir}
+fi
+
+
+# echo ${myTemplatesDir}
+# echo ${myUtilsDir}
